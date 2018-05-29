@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Daily Trends Prueba</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -25,10 +25,11 @@
                 height: 100vh;
             }
 
-            .flex-center {
-                align-items: center;
+            .flex-top {
+                align-items: top;
                 display: flex;
                 justify-content: center;
+                margin-top: 30px;
             }
 
             .position-ref {
@@ -52,7 +53,7 @@
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
-                font-size: 12px;
+                font-size: 14px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
@@ -65,7 +66,7 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-top position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
@@ -79,15 +80,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    NOTICIAS DIARIAS  
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="">PORTADA</a>
+                    <a href="nuevo-feed">NUEVO FEED</a>
                 </div>
             </div>
         </div>
