@@ -86,16 +86,14 @@
                 <div class="links">
                     <a href="../public">PORTADA</a>
                     <a href="feeds">FEEDS</a>
-                    <a href="nuevo-feed">NUEVO FEED</a>
+                    <a href="new-feed">NUEVO FEED</a>
                 </div>
                 <hr><br><br>
                 <div class="row">
-                  @foreach($noticiasMundo as $nm)
+                  @foreach($titulosMundo as $nm)
                   <div class="col-xs-6 col-md-4"><h2> {{$nm}} </h2></div>
                   @endforeach
-                  @foreach($noticiasPais as $np)
-                  <div class="col-xs-6 col-md-4"><h2> {{$np}} </h2></div>
-                  @endforeach
+
                 </div>
 
             </div>

@@ -14,7 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/feeds', 'CrudController@scraper');
+Route::get('/feeds', 'FeedController@insideLinks');
+Route::get('/new-feed', function () {
+    return view('newfeed');
+});
 Route::post('/create', 'CrudController@create');
 Route::get('/read', 'CrudController@read');
 Route::post('/update/{id}', 'CrudController@update');

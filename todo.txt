@@ -5,5 +5,5 @@
 - Crear un controlador que gestione los feeds de hoy con su título, descripción, imagen, fuente y el periódico donde se ha publicado.
 + Crea una vista listado de Feeds que consuman las noticias.
 - Crea una vista detalle de Feed que se pueda editar y borrar.
-- Crea una vista de creación de Feed.
++ Crea una vista de creación de Feed.
 

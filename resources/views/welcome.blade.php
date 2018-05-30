@@ -86,7 +86,7 @@
                 <div class="links">
                     <a href="">PORTADA</a>
                     <a href="feeds">FEEDS</a>
-                    <a href="nuevo-feed">NUEVO FEED</a>
+                    <a href="new-feed">NUEVO FEED</a>
                 </div>
             </div>
         </div>
