@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/feeds', 'CrudController@scraper');
 Route::post('/create', 'CrudController@create');
 Route::get('/read', 'CrudController@read');
 Route::post('/update/{id}', 'CrudController@update');

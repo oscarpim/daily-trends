@@ -1,9 +1,9 @@
 + Crea un proyecto con una arquitectura de ficheros básica, gasta un framework si lo consideras oportuno.
 + Crea un modelo Feed que tenga los atributos: title, body, image, source y publisher.
 + Crea un controlador que se encargue de gestionar a los servicios CRUD del modelo.
-- Crea un “servicio de lectura de feeds” que haga web scraping a cada uno de los periódicos en busca de su noticia de portada y que la guarde en un Feed.
++ Crea un “servicio de lectura de feeds” que haga web scraping a cada uno de los periódicos en busca de su noticia de portada y que la guarde en un Feed.
 - Crear un controlador que gestione los feeds de hoy con su título, descripción, imagen, fuente y el periódico donde se ha publicado.
-- Crea una vista listado de Feeds que consuman las noticias.
++ Crea una vista listado de Feeds que consuman las noticias.
 - Crea una vista detalle de Feed que se pueda editar y borrar.
 - Crea una vista de creación de Feed.
 
