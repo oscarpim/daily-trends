@@ -30,7 +30,7 @@
             align-items: top;
             display: flex;
             justify-content: center;
-            margin-top: 30px;
+            margin-top: 0px;
         }
         
         .position-ref {
@@ -91,7 +91,7 @@
     <div class="flex-top position-ref full-height"> 
         <div class="content">
             <div class="title m-b-md"> NOTICIAS DIARIAS </div>
-            <div class="links"> <a href="">PORTADA</a> <a href="../feeds">FEEDS</a> <a href="../new-feed">NUEVO FEED</a> </div>
+            <div class="links"> <a href="../">PORTADA</a> <a href="../feeds">FEEDS</a> <a href="../new-feed">NUEVO FEED</a> </div>
             <hr>
 
             <div class="container">

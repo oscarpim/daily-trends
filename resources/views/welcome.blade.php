@@ -9,7 +9,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
+        <!-- Bootstrap para estilos -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <!-- Styles -->
         <style>
             html, body {
@@ -29,7 +30,7 @@
                 align-items: top;
                 display: flex;
                 justify-content: center;
-                margin-top: 30px;
+                margin-top: 0px;
             }
 
             .position-ref {
@@ -63,6 +64,7 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            
         </style>
     </head>
     <body>
@@ -88,7 +90,9 @@
                     <a href="feeds">FEEDS</a>
                     <a href="new-feed">NUEVO FEED</a>
                 </div>
+                
                  <hr><br><br>
+                 <img src="../arquitectura-app.jpg" alt="" width="600" height="500">
                 <div style="font-weight:bold;">Oscar Pitarch Millet - Daily Trends App</div>
             </div>
         </div>

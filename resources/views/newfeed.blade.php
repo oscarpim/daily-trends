@@ -29,7 +29,7 @@
                 align-items: top;
                 display: flex;
                 justify-content: center;
-                margin-top: 30px;
+                margin-top: 0px;
             }
 
             .position-ref {
