@@ -45,6 +45,10 @@ class FeedController extends Controller
     
     public function insideLinks(){
         $client = new Client();
+        
+        //////////////////////////////
+        /******DATOS EL MUNDO********/
+        //////////////////////////////
         $elMundo = $client->request('GET', 'http://www.elmundo.es/');
          // Cogemos los links de las noticias del mundo
         $enlacesMundo = array();
@@ -85,7 +89,48 @@ class FeedController extends Controller
             
         }
         
-        return view("feeds", ["titulosMundo" => $titulosMundoFeed, "textosMundo" => $bodyMundoFeed, "imagenesMundo" => $imageMundoFeed, "fuenteMundo" => $sourceMundoFeed, "editorMundo" => $publisherMundoFeed]);
+        //////////////////////////////
+        /******DATOS EL PAIS********/
+        //////////////////////////////
+        $elPais = $client->request('GET', 'https://elpais.com/');
+         // Cogemos los links de las noticias del mundo
+        $enlacesPais = array();
+        $enlacesPais2 = array();
+        $elPais->filter('h2 > a')->each(function ($node) use (&$enlacesPais) {
+             $enlacesPais[] = $node->attr('href');
+        });
+        
+        // Almacenamos unicamente los 5 primeros
+        $i=0;      
+        do{
+           $enlacesPais2[$i]=$enlacesPais[$i]; 
+           $i++;
+        }while($i<5);
+        
+        // Ingresamos link por link y obtenemos datos
+        $titulosPaisFeed = array();
+        $bodyPaisFeed = array();
+        $imagePaisFeed = array();
+        $sourcePaisFeed = array();
+        $publisherPaisFeed = array();
+        
+        foreach($enlacesPais2 as $en){
+           $insideFeeds = $client->request('GET', $en);
+            //titulo de articulo del Pais
+           $titulosPaisFeed[] = $insideFeeds->filter('h1#articulo-titulo.articulo-titulo')->text();
+            //texto de articulo del Pais
+           $bodyPaisFeed[] = $insideFeeds->filter('p')->eq(1)->text();
+            //imagen de articulo del Pais
+           $imagePaisFeed[]=$insideFeeds->filter('img')->eq(2)->attr('src');
+            //fuente de articulo del Pais
+           $sourcePaisFeed[] = 'El Pais';
+            //editor de articulo del Pais
+           $publisherPaisFeed[] = $insideFeeds->filter('span.autor-nombre > a')->text();
+            
+            
+        }
+        
+        return view("feeds", ["titulosMundo" => $titulosMundoFeed, "textosMundo" => $bodyMundoFeed, "imagenesMundo" => $imageMundoFeed, "fuenteMundo" => $sourceMundoFeed, "editorMundo" => $publisherMundoFeed, "titulosPais" => $titulosPaisFeed, "textosPais" => $bodyPaisFeed, "imagenesPais" => $imagePaisFeed, "fuentePais" => $sourcePaisFeed, "editorPais" => $publisherPaisFeed]);
     }
     
 }

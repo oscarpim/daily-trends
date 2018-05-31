@@ -90,6 +90,7 @@
                 </div>
                 <hr><br><br>
                 <div class="row">
+                 <h1>EL MUNDO PERIODICO</h1>
                   @foreach($titulosMundo as $nm)
                   <div class="col-xs-6 col-md-4"><h2> {{$nm}} </h2></div>
                   @endforeach
@@ -107,6 +108,27 @@
                   @endforeach
                   <hr>
                   @foreach($editorMundo as $em)
+                  <div class="col-xs-6 col-md-4"><h2> {{$em}} </h2></div>
+                  @endforeach
+                  <hr>
+                  <h1>EL PAIS PERIODICO</h1>
+                  @foreach($titulosPais as $nm)
+                  <div class="col-xs-6 col-md-4"><h2> {{$nm}} </h2></div>
+                  @endforeach
+                  <hr>
+                  @foreach($textosPais as $cm)
+                  <div class="col-xs-6 col-md-4"><h2> {{$cm}} </h2></div>
+                  @endforeach
+                  <hr>
+                  @foreach($imagenesPais as $im)
+                  <div class="col-xs-6 col-md-4"><h2> {{$im}} </h2></div>
+                  @endforeach
+                  <hr>
+                  @foreach($fuentePais as $fm)
+                  <div class="col-xs-6 col-md-4"><h2> {{$fm}} </h2></div>
+                  @endforeach
+                  <hr>
+                  @foreach($editorPais as $em)
                   <div class="col-xs-6 col-md-4"><h2> {{$em}} </h2></div>
                   @endforeach
                 </div>
