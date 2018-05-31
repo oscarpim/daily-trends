@@ -44,21 +44,15 @@ class FeedController extends Controller
             //texto de articulo del Mundo
            $bodyMundoFeed[] = $insideFeed->filter('div.row.content.cols-70-30 > p')->text();
             //imagen de articulo del Mundo
-           $insideFeed->filter('div.container-image > img.full-image')->each(function ($node) use (&$imageMundoFeed) {
-               $var=$node->attr('src');
-               if(empty($var)){
-                 $var = 'foto default';
-                 $imageMundoFeed[] = $var;
-               } else {
-                 $imageMundoFeed[] = $var;
-               } 
-             
-
-            });
+           $imageMundoFeed[]=$insideFeed->filter('img')->eq(3)->attr('src');
             //fuente de articulo del Mundo
            $sourceMundoFeed[] = 'El Mundo';
             //editor de articulo del Mundo
-           $publisherMundoFeed[] = $insideFeed->filter('ul.author')->text();
+           if (empty($insideFeed->filter('ul.author'))) {
+                $publisherMundoFeed[] = $insideFeed->filter('ul.author')->text();
+           }else{
+                $publisherMundoFeed[] = '';
+           }
             
             
         }
@@ -107,21 +101,27 @@ class FeedController extends Controller
         //Ingresamos datos recogidos en la Base de Datos
         $feed = new Feed();
         $data=array();
-        //insertar una imagen por default
         
         
         $data = array(
+            //EL MUNDO
             array('title'=>$titulosMundoFeed[0], 'body'=> $bodyMundoFeed[0], 'image'=> $imageMundoFeed[0], 'source'=> $sourceMundoFeed[0], 'publisher'=> $publisherMundoFeed[0]),
             array('title'=>$titulosMundoFeed[1], 'body'=> $bodyMundoFeed[1], 'image'=> $imageMundoFeed[1], 'source'=> $sourceMundoFeed[1], 'publisher'=> $publisherMundoFeed[1]),
             array('title'=>$titulosMundoFeed[2], 'body'=> $bodyMundoFeed[2], 'image'=> $imageMundoFeed[2], 'source'=> $sourceMundoFeed[2], 'publisher'=> $publisherMundoFeed[2]),
             array('title'=>$titulosMundoFeed[3], 'body'=> $bodyMundoFeed[3], 'image'=> $imageMundoFeed[3], 'source'=> $sourceMundoFeed[3], 'publisher'=> $publisherMundoFeed[3]),
-            array('title'=>$titulosMundoFeed[4], 'body'=> $bodyMundoFeed[4], 'image'=> $imageMundoFeed[4], 'source'=> $sourceMundoFeed[4], 'publisher'=> $publisherMundoFeed[4])
+            array('title'=>$titulosMundoFeed[4], 'body'=> $bodyMundoFeed[4], 'image'=> $imageMundoFeed[4], 'source'=> $sourceMundoFeed[4], 'publisher'=> $publisherMundoFeed[4]),
+            //EL PAIS
+            array('title'=>$titulosPaisFeed[0], 'body'=> $bodyPaisFeed[0], 'image'=> $imagePaisFeed[0], 'source'=> $sourcePaisFeed[0], 'publisher'=> $publisherPaisFeed[0]),
+            array('title'=>$titulosPaisFeed[1], 'body'=> $bodyPaisFeed[1], 'image'=> $imagePaisFeed[1], 'source'=> $sourcePaisFeed[1], 'publisher'=> $publisherPaisFeed[1]),
+            array('title'=>$titulosPaisFeed[2], 'body'=> $bodyPaisFeed[2], 'image'=> $imagePaisFeed[2], 'source'=> $sourcePaisFeed[2], 'publisher'=> $publisherPaisFeed[2]),
+            array('title'=>$titulosPaisFeed[3], 'body'=> $bodyPaisFeed[3], 'image'=> $imagePaisFeed[3], 'source'=> $sourcePaisFeed[3], 'publisher'=> $publisherPaisFeed[3]),
+            array('title'=>$titulosPaisFeed[4], 'body'=> $bodyPaisFeed[4], 'image'=> $imagePaisFeed[4], 'source'=> $sourcePaisFeed[4], 'publisher'=> $publisherPaisFeed[4])
         );
 
-        Feed::insert($data);
+        //Feed::insert($data);
+        $ultimasNoticias = Feed::orderBy('id', 'DESC')->get()->take(10);
         
-        
-        return view("feeds", ["titulosMundo" => $titulosMundoFeed, "textosMundo" => $bodyMundoFeed, "imagenesMundo" => $imageMundoFeed, "fuenteMundo" => $sourceMundoFeed, "editorMundo" => $publisherMundoFeed, "titulosPais" => $titulosPaisFeed, "textosPais" => $bodyPaisFeed, "imagenesPais" => $imagePaisFeed, "fuentePais" => $sourcePaisFeed, "editorPais" => $publisherPaisFeed]);
+        return view("feeds", ['ultimasNoticias'=>$ultimasNoticias]);
     }
     
 }

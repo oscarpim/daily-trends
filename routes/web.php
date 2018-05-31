@@ -11,14 +11,21 @@
 |
 */
 
+//Vista de inicio
 Route::get('/', function () {
     return view('welcome');
 });
+//Vista general de feeds
 Route::get('/feeds', 'FeedController@insideLinks');
+
+//Vista creacion de un nuevo feed manual
 Route::get('/new-feed', function () {
     return view('newfeed');
 });
 Route::post('/create', 'CrudController@create');
+
+
+
 
 
 Route::get('/read', 'CrudController@read');
