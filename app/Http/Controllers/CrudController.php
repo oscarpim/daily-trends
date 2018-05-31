@@ -26,11 +26,10 @@ class CrudController extends Controller
         return redirect('/');
     }
     
-    public function read(){
+    public function read($id){
         
-        $feeds = Feed::all();
-        
-        return view('feed.index', ['feeds' => $feeds]);
+        $feed = Feed::where('id', $id)->get();
+        return view('unico', ['feed' => $feed]);
     }
     
     public function update(Requet $request, $id){

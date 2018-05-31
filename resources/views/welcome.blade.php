@@ -88,6 +88,8 @@
                     <a href="feeds">FEEDS</a>
                     <a href="new-feed">NUEVO FEED</a>
                 </div>
+                 <hr><br><br>
+                <div style="font-weight:bold;">Oscar Pitarch Millet - Daily Trends App</div>
             </div>
         </div>
     </body>

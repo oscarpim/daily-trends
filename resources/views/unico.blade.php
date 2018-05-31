@@ -9,7 +9,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <!-- Bootstrap para estilos -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!-- Styles -->
     <style>
         html,
@@ -88,24 +88,22 @@
 </head>
 
 <body>
-    <div class="flex-top position-ref full-height"> @if (Route::has('login'))
-        <div class="top-right links"> @if (Auth::check()) <a href="{{ url('/home') }}">Home</a> @else <a href="{{ url('/login') }}">Login</a> <a href="{{ url('/register') }}">Register</a> @endif </div> @endif
+    <div class="flex-top position-ref full-height"> 
         <div class="content">
             <div class="title m-b-md"> NOTICIAS DIARIAS </div>
-            <div class="links"> <a href="../public">PORTADA</a> <a href="feeds">FEEDS</a> <a href="new-feed">NUEVO FEED</a> </div>
+            <div class="links"> <a href="">PORTADA</a> <a href="../feeds">FEEDS</a> <a href="../new-feed">NUEVO FEED</a> </div>
             <hr>
-            <br>
+
             <div class="container">
-                <div class="row"> @foreach($ultimasNoticias as $n => $data)
-                    <div class="col-md-6" style="color:#111;">
+                <div class="row"> @foreach($feed as $data)
+                    <div class="col-md-12" style="color:#111;">
                         <div class="col-md-12">
-                            <a href="unico/{{$data->id}}"><h2>{{$data->title}}</h2></a> </div>
+                            <h2>{{$data->title}}</h2></div>
                         <div class="col-md-12"> <img src="{{$data->image}}" alt=""> {{$data->body}}
                             <br> <span class="fuerte">{{$data->source}}</span> - <span class="fuerte">{{$data->publisher}}</span> </div>
                     </div> @endforeach </div>
             </div>
-            <hr>
-            <footer style="font-weight:bold;">Oscar Pitarch Millet - Daily Trends App</footer>
+            <div style="font-weight:bold;">Oscar Pitarch Millet - Daily Trends App</div>
         </div>
     </div>
 </body>

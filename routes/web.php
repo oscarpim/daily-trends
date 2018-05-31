@@ -18,6 +18,9 @@ Route::get('/', function () {
 //Vista general de feeds
 Route::get('/feeds', 'FeedController@insideLinks');
 
+//Vista de un solo feed
+Route::get('/unico/{id}', 'CrudController@read');
+
 //Vista creacion de un nuevo feed manual
 Route::get('/new-feed', function () {
     return view('newfeed');

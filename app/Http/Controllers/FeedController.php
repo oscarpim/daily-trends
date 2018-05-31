@@ -44,7 +44,11 @@ class FeedController extends Controller
             //texto de articulo del Mundo
            $bodyMundoFeed[] = $insideFeed->filter('div.row.content.cols-70-30 > p')->text();
             //imagen de articulo del Mundo
-           $imageMundoFeed[]=$insideFeed->filter('img')->eq(3)->attr('src');
+           if (!empty($insideFeed->filter('img')->eq(3))) {
+                $imageMundoFeed[] = $insideFeed->filter('img')->eq(3)->attr('src');
+           }else{
+                $imageMundoFeed[] = '';
+           }
             //fuente de articulo del Mundo
            $sourceMundoFeed[] = 'El Mundo';
             //editor de articulo del Mundo
@@ -89,12 +93,19 @@ class FeedController extends Controller
             //texto de articulo del Pais
            $bodyPaisFeed[] = $insideFeeds->filter('p')->eq(1)->text();
             //imagen de articulo del Pais
-           $imagePaisFeed[]=$insideFeeds->filter('img')->eq(2)->attr('src');
+           if (!empty($insideFeed->filter('img')->eq(2))) {
+                $imagePaisFeed[] = $insideFeeds->filter('img')->eq(2)->attr('src');
+           }else{
+                $imagePaisFeed[] = '';
+           }
             //fuente de articulo del Pais
            $sourcePaisFeed[] = 'El Pais';
             //editor de articulo del Pais
-           $publisherPaisFeed[] = $insideFeeds->filter('span.autor-nombre > a')->text();
-            
+           if (!empty($insideFeeds->filter('span.autor-nombre > a'))) {
+                $publisherPaisFeed[] = $insideFeeds->filter('span.autor-nombre > a')->text();
+           }else{
+                $publisherPaisFeed[] = '';
+           }
             
         }
         
@@ -118,7 +129,7 @@ class FeedController extends Controller
             array('title'=>$titulosPaisFeed[4], 'body'=> $bodyPaisFeed[4], 'image'=> $imagePaisFeed[4], 'source'=> $sourcePaisFeed[4], 'publisher'=> $publisherPaisFeed[4])
         );
 
-        //Feed::insert($data);
+        Feed::insert($data);
         $ultimasNoticias = Feed::orderBy('id', 'DESC')->get()->take(10);
         
         return view("feeds", ['ultimasNoticias'=>$ultimasNoticias]);
