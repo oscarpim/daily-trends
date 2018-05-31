@@ -50,7 +50,7 @@ class FeedController extends Controller
         $enlacesMundo = array();
         $enlacesMundo2 = array();
         $elMundo->filter('h2 > a')->each(function ($node) use (&$enlacesMundo) {
-             $enlacesMundo[] = $node->attr('href')."\n";
+             $enlacesMundo[] = $node->attr('href');
         });
         
         // Almacenamos unicamente los 5 primeros
@@ -61,15 +61,31 @@ class FeedController extends Controller
         }while($i<5);
         
         // Ingresamos link por link y obtenemos datos
-        $titulosFeed = array();
+        $titulosMundoFeed = array();
+        $bodyMundoFeed = array();
+        $imageMundoFeed = array();
+        $sourceMundoFeed = array();
+        $publisherMundoFeed = array();
         
         foreach($enlacesMundo2 as $en){
            $insideFeed = $client->request('GET', $en);
-           $titulosFeed[] = $insideFeed->filter('div.titles > h1.js-headline')->text()."\n";
-           
+            //titulo de articulo del Mundo
+           $titulosMundoFeed[] = $insideFeed->filter('div.titles > h1.js-headline')->text();
+            //texto de articulo del Mundo
+           $bodyMundoFeed[] = $insideFeed->filter('div.row.content.cols-70-30 > p')->text();
+            //imagen de articulo del Mundo
+           $insideFeed->filter('div.container-image > img.full-image')->each(function ($node) use (&$imageMundoFeed) {
+             $imageMundoFeed[] = $node->attr('src');
+            });
+            //fuente de articulo del Mundo
+           $sourceMundoFeed[] = 'El Mundo';
+            //editor de articulo del Mundo
+           $publisherMundoFeed[] = $insideFeed->filter('ul.author')->text();
+            
+            
         }
         
-        return view("feeds", ["titulosMundo" => $enlacesMundo2]);
+        return view("feeds", ["titulosMundo" => $titulosMundoFeed, "textosMundo" => $bodyMundoFeed, "imagenesMundo" => $imageMundoFeed, "fuenteMundo" => $sourceMundoFeed, "editorMundo" => $publisherMundoFeed]);
     }
     
 }

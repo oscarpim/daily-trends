@@ -79,8 +79,9 @@
                     <a href="feeds">FEEDS</a>
                     <a href="new-feed">NUEVO FEED</a>
                 </div>
-                <hr><br><br>
+                <hr><br>
                 <div class="row">
+                 <h1>CREAR UN FEED</h1>
                   <form action="create" method="post">
                    {{ csrf_field() }}
                     <input type="text" name="title" placeholder="Titulo"><br><br>

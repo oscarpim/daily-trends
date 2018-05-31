@@ -93,7 +93,22 @@
                   @foreach($titulosMundo as $nm)
                   <div class="col-xs-6 col-md-4"><h2> {{$nm}} </h2></div>
                   @endforeach
-
+                  <hr>
+                  @foreach($textosMundo as $cm)
+                  <div class="col-xs-6 col-md-4"><h2> {{$cm}} </h2></div>
+                  @endforeach
+                  <hr>
+                  @foreach($imagenesMundo as $im)
+                  <div class="col-xs-6 col-md-4"><h2> {{$im}} </h2></div>
+                  @endforeach
+                  <hr>
+                  @foreach($fuenteMundo as $fm)
+                  <div class="col-xs-6 col-md-4"><h2> {{$fm}} </h2></div>
+                  @endforeach
+                  <hr>
+                  @foreach($editorMundo as $em)
+                  <div class="col-xs-6 col-md-4"><h2> {{$em}} </h2></div>
+                  @endforeach
                 </div>
 
             </div>
