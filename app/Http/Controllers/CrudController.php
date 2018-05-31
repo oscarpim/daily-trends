@@ -23,7 +23,7 @@ class CrudController extends Controller
         
         $feed -> save();
         
-        return redirect('new-feed');
+        return redirect('/');
     }
     
     public function read(){

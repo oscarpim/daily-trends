@@ -90,6 +90,9 @@
                 </div>
                 <hr><br><br>
                 <div class="row">
+                 <h1>EN BD</h1>
+                 
+                 <hr>
                  <h1>EL MUNDO PERIODICO</h1>
                   @foreach($titulosMundo as $nm)
                   <div class="col-xs-6 col-md-4"><h2> {{$nm}} </h2></div>

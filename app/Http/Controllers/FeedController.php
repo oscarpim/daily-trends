@@ -8,40 +8,6 @@ use Goutte\Client;
 
 class FeedController extends Controller
 {
-    public function scraper(){
-        
-        $client = new Client();
-        // Vamos al periodico el Mundo
-        $elMundo = $client->request('GET', 'http://www.elmundo.es/');
-        $elPais = $client->request('GET', 'http://elpais.com/');
-        
-        // Cogemos los ultimos posts de la portada del Mundo y mostramos los titulos
-        $titulosMundo = array();
-        $titulosMundo2 = array();
-        $titulosPais = array();
-        $titulosPais2 = array();
-        $elMundo->filter('h2')->each(function ($node) use (&$titulosMundo) {
-             $titulosMundo[] = $node->text()."\n";
-        });
-        $elPais->filter('h2 > a')->each(function ($node) use (&$titulosPais) {
-             $titulosPais[] = $node->text()."\n";
-        });
-        
-       
-        
-        
-        //Se almacenan 5 noticias en un segundo array para cada periodico y luego enviarlo a la vista
-        $i=0;
-        do{
-           $titulosMundo2[$i]=$titulosMundo[$i]; 
-           $titulosPais2[$i]=$titulosPais[$i];
-           $i++;
-        }while($i<5);
-        
-        return view("feeds", ["noticiasMundo" => $titulosMundo2, "noticiasPais" => $titulosPais2]);
-    }
-    
-    
     
     public function insideLinks(){
         $client = new Client();
@@ -79,7 +45,15 @@ class FeedController extends Controller
            $bodyMundoFeed[] = $insideFeed->filter('div.row.content.cols-70-30 > p')->text();
             //imagen de articulo del Mundo
            $insideFeed->filter('div.container-image > img.full-image')->each(function ($node) use (&$imageMundoFeed) {
-             $imageMundoFeed[] = $node->attr('src');
+               $var=$node->attr('src');
+               if(empty($var)){
+                 $var = 'foto default';
+                 $imageMundoFeed[] = $var;
+               } else {
+                 $imageMundoFeed[] = $var;
+               } 
+             
+
             });
             //fuente de articulo del Mundo
            $sourceMundoFeed[] = 'El Mundo';
@@ -130,9 +104,25 @@ class FeedController extends Controller
             
         }
         
+        //Ingresamos datos recogidos en la Base de Datos
+        $feed = new Feed();
+        $data=array();
+        //insertar una imagen por default
+        
+        
+        $data = array(
+            array('title'=>$titulosMundoFeed[0], 'body'=> $bodyMundoFeed[0], 'image'=> $imageMundoFeed[0], 'source'=> $sourceMundoFeed[0], 'publisher'=> $publisherMundoFeed[0]),
+            array('title'=>$titulosMundoFeed[1], 'body'=> $bodyMundoFeed[1], 'image'=> $imageMundoFeed[1], 'source'=> $sourceMundoFeed[1], 'publisher'=> $publisherMundoFeed[1]),
+            array('title'=>$titulosMundoFeed[2], 'body'=> $bodyMundoFeed[2], 'image'=> $imageMundoFeed[2], 'source'=> $sourceMundoFeed[2], 'publisher'=> $publisherMundoFeed[2]),
+            array('title'=>$titulosMundoFeed[3], 'body'=> $bodyMundoFeed[3], 'image'=> $imageMundoFeed[3], 'source'=> $sourceMundoFeed[3], 'publisher'=> $publisherMundoFeed[3]),
+            array('title'=>$titulosMundoFeed[4], 'body'=> $bodyMundoFeed[4], 'image'=> $imageMundoFeed[4], 'source'=> $sourceMundoFeed[4], 'publisher'=> $publisherMundoFeed[4])
+        );
+
+        Feed::insert($data);
+        
+        
         return view("feeds", ["titulosMundo" => $titulosMundoFeed, "textosMundo" => $bodyMundoFeed, "imagenesMundo" => $imageMundoFeed, "fuenteMundo" => $sourceMundoFeed, "editorMundo" => $publisherMundoFeed, "titulosPais" => $titulosPaisFeed, "textosPais" => $bodyPaisFeed, "imagenesPais" => $imagePaisFeed, "fuentePais" => $sourcePaisFeed, "editorPais" => $publisherPaisFeed]);
     }
     
 }
-
 ?>

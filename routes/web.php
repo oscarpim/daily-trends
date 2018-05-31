@@ -19,6 +19,8 @@ Route::get('/new-feed', function () {
     return view('newfeed');
 });
 Route::post('/create', 'CrudController@create');
+
+
 Route::get('/read', 'CrudController@read');
 Route::post('/update/{id}', 'CrudController@update');
 Route::delete('/delete/{id}', 'CrudController@delete');
